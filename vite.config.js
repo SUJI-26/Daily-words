@@ -8,6 +8,7 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
+      includeAssets: ["icon-192.png", "icon-512.png"],
       manifest: {
         name: "Daily Words",
         short_name: "Words",
