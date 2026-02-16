@@ -9,10 +9,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       manifest: {
         name: 'Daily English App',
-        short_name: 'EnglishApp',
+        short_name: 'DailyWords',
         start_url: '/',
         display: 'standalone',
-        background_color: '#000000',
+        background_color: '#141e30',
         theme_color: '#4caf50',
         icons: [
           {
