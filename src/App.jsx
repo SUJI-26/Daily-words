@@ -69,9 +69,11 @@ function App() {
         </>
       )}
 
-      {page === "quiz" && (
+     {page === "quiz" && (
         <Quiz words={[words[index1], words[index2]]} />
       )}
+
+ 
 
       {page === "progress" && (
         <div className="card">
