@@ -67,3 +67,53 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+}
+
+button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+/* Animation when completed */
+.card.completed {
+  animation: pop 0.4s ease;
+  background-color: #d4f8d4;
+  transform: scale(1.05);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}

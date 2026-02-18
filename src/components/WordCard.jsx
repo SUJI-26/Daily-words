@@ -1,42 +1,53 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 
 function WordCard({ data, markCompleted }) {
-  const speakWord = () => {
-    const speech = new SpeechSynthesisUtterance(data.word);
-    speech.lang = "en-US";
-    window.speechSynthesis.speak(speech);
+  const [revealed, setRevealed] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleReveal = () => {
+    setRevealed(true);
+  };
+
+  const handleCompleted = () => {
+    markCompleted(data.word);
+
+    setShowPopup(true);
+
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
   };
 
   return (
-    <motion.div
-      className="card"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02 }}
-    >
+    <div className="card">
       <h2>{data.word}</h2>
+
       <p><strong>English:</strong> {data.meaning_en}</p>
-      <p><strong>Tamil:</strong> {data.meaning_ta}</p>
-      <p><strong>Sentence:</strong> {data.sentence}</p>
+
+      {revealed && (
+        <p className="tamil">
+          <strong>Tamil:</strong> {data.meaning_ta}
+        </p>
+      )}
+
+      <p><em>Example:</em> {data.sentence}</p>
 
       <div className="btn-group">
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={speakWord}
-        >
-          🔊 Pronounce
-        </motion.button>
+        <button onClick={handleReveal}>
+          Reveal Tamil
+        </button>
 
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={() => markCompleted(data.word)}
-        >
-          ✅ Complete
-        </motion.button>
+        <button onClick={handleCompleted}>
+          Completed
+        </button>
       </div>
-    </motion.div>
+
+      {showPopup && (
+        <div className="popup">
+          🎉 Today word completed!
+        </div>
+      )}
+    </div>
   );
 }
 

@@ -10,38 +10,38 @@ function App() {
   const [page, setPage] = useState("home");
   const [completedToday, setCompletedToday] = useState([]);
 
-  const todayKey = "completed-" + new Date().toDateString();
+  const today = new Date().toDateString();
+  const todayKey = "completed-" + today;
 
-  // 🔥 Streak + Load Completed
+  // 🔥 Handle streak + daily reset properly
   useEffect(() => {
-    const today = new Date().toDateString();
     const lastVisit = localStorage.getItem("lastVisit");
     let currentStreak = parseInt(localStorage.getItem("streak")) || 0;
 
     if (lastVisit !== today) {
       currentStreak += 1;
-      localStorage.setItem("streak", currentStreak);
+
+      // Reset today's completed words
+      localStorage.setItem(todayKey, JSON.stringify([]));
       localStorage.setItem("lastVisit", today);
+      localStorage.setItem("streak", currentStreak);
     }
 
     setStreak(currentStreak);
 
+    // Always load fresh today data
     const saved = JSON.parse(localStorage.getItem(todayKey)) || [];
     setCompletedToday(saved);
   }, []);
 
-  // 🔥 Mark completed
   const markCompleted = (word) => {
-    let saved = JSON.parse(localStorage.getItem(todayKey)) || [];
+    if (completedToday.includes(word)) return;
 
-    if (!saved.includes(word)) {
-      saved.push(word);
-      localStorage.setItem(todayKey, JSON.stringify(saved));
-      setCompletedToday(saved);
-    }
+    const updated = [...completedToday, word];
+    localStorage.setItem(todayKey, JSON.stringify(updated));
+    setCompletedToday(updated);
   };
 
-  // 🔥 Daily Word Logic
   const todayNumber = Math.floor(
     new Date().getTime() / (1000 * 60 * 60 * 24)
   );
@@ -62,6 +62,7 @@ function App() {
             data={words[index1]}
             markCompleted={markCompleted}
           />
+
           <WordCard
             data={words[index2]}
             markCompleted={markCompleted}
@@ -69,11 +70,9 @@ function App() {
         </>
       )}
 
-     {page === "quiz" && (
+      {page === "quiz" && (
         <Quiz words={[words[index1], words[index2]]} />
       )}
-
- 
 
       {page === "progress" && (
         <div className="card">
