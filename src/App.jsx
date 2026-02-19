@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>📚 Daily English App</h1>
+      <h1>📚 Daily Word</h1>
       <h3>🔥 Streak: {streak} days</h3>
 
       {page === "home" && (

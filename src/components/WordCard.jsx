@@ -22,13 +22,14 @@ function WordCard({ data, markCompleted }) {
     <div className="card">
       <h2>{data.word}</h2>
 
-      <p><strong>English:</strong> {data.meaning_en}</p>
+<p><strong className="label">English:</strong> {data.meaning_en}</p>
 
-      {revealed && (
-        <p className="tamil">
-          <strong>Tamil:</strong> {data.meaning_ta}
-        </p>
-      )}
+{revealed && (
+  <p className="tamil">
+    <strong className="label">Tamil:</strong> {data.meaning_ta}
+  </p>
+)}
+
 
       <p><em>Example:</em> {data.sentence}</p>
 
