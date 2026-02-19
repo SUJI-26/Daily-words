@@ -28,7 +28,7 @@ h3 {
 
 /* 🔥 CARD */
 .card {
-  background: rgba(14, 17, 185, 0.08);
+  background-color: rgba(114, 1, 126, 0.334);
   backdrop-filter: blur(12px);
   padding: 20px;
   margin-bottom: 20px;
