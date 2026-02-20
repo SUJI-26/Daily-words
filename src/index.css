@@ -99,7 +99,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Animation when completed */
 .card.completed {
   animation: pop 0.4s ease;
   background-color: #d4f8d4;
