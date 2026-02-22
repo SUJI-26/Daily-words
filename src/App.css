@@ -115,7 +115,6 @@ button:hover {
   font-weight: bold;
 }
 
-/* 🔥 Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -138,7 +137,6 @@ button:hover {
   }
 }
 
-/* 🔥 Mobile Responsive */
 @media (max-width: 480px) {
 
   .container {
