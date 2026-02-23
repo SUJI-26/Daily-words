@@ -13,7 +13,6 @@ function App() {
   const today = new Date().toDateString();
   const todayKey = "completed-" + today;
 
-  // 🔥 Handle streak + daily reset properly
   useEffect(() => {
     const lastVisit = localStorage.getItem("lastVisit");
     let currentStreak = parseInt(localStorage.getItem("streak")) || 0;
@@ -21,7 +20,6 @@ function App() {
     if (lastVisit !== today) {
       currentStreak += 1;
 
-      // Reset today's completed words
       localStorage.setItem(todayKey, JSON.stringify([]));
       localStorage.setItem("lastVisit", today);
       localStorage.setItem("streak", currentStreak);
@@ -29,7 +27,6 @@ function App() {
 
     setStreak(currentStreak);
 
-    // Always load fresh today data
     const saved = JSON.parse(localStorage.getItem(todayKey)) || [];
     setCompletedToday(saved);
   }, []);
