@@ -78,7 +78,6 @@ function App() {
           <p>Current Streak: {streak} days</p>
         </div>
       )}
-
       <BottomNav currentPage={page} setCurrentPage={setPage} />
     </div>
   );
