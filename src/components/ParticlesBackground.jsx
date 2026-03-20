@@ -5,7 +5,6 @@ function ParticlesBackground() {
   const particlesInit = async (main) => {
     await loadFull(main);
   };
-
   return (
     <Particles
       id="tsparticles"
